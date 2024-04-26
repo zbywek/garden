@@ -24,5 +24,5 @@ public class Device {
 
     private String deviceDescription;
 
-    private String deviseStatus;
+    private String deviceStatus;
 }

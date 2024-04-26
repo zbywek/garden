@@ -2,6 +2,7 @@ package pl.infomind.garden.map;
 
 import org.springframework.stereotype.Component;
 import pl.infomind.garden.entity.Device;
+import pl.infomind.garden.model.DeviceRequest;
 import pl.infomind.garden.model.DeviceResponse;
 
 import java.util.Collection;
@@ -16,7 +17,7 @@ public class DeviceMapper {
         deviceResponse.setDeviceName(device.getDeviceName());
         deviceResponse.setDeviceType(device.getDeviceType());
         deviceResponse.setDeviceDescription(device.getDeviceDescription());
-        deviceResponse.setDeviceStatus(device.getDeviseStatus());
+        deviceResponse.setDeviceStatus(device.getDeviceStatus());
         return deviceResponse;
     }
 
@@ -30,11 +31,20 @@ public class DeviceMapper {
         device.setDeviceName(deviceResponse.getDeviceName());
         device.setDeviceType(deviceResponse.getDeviceType());
         device.setDeviceDescription(deviceResponse.getDeviceDescription());
-        device.setDeviseStatus(deviceResponse.getDeviceStatus());
+        device.setDeviceStatus(deviceResponse.getDeviceStatus());
         return device;
     }
 
     public Device mapTo(DeviceResponse deviceResponse) {
         return mapTo(new Device(), deviceResponse);
+    }
+
+    public Device mapTo(DeviceRequest deviceRequest) {
+        return Device.builder()
+                .deviceName(deviceRequest.getDeviceName())
+                .deviceType(deviceRequest.getDeviceType())
+                .deviceDescription(deviceRequest.getDeviceDescription())
+                .deviceStatus(deviceRequest.getDeviceStatus())
+                .build();
     }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.infomind.garden.entity.Device;
 import pl.infomind.garden.map.DeviceMapper;
+import pl.infomind.garden.model.DeviceRequest;
 import pl.infomind.garden.model.DeviceResponse;
 import pl.infomind.garden.repository.DeviceRepository;
 
@@ -31,5 +32,15 @@ public class DeviceService {
         } else {
             throw new NoSuchElementException("Device not found");
         }
+    }
+
+    public DeviceResponse addDevice(DeviceRequest deviceRequest) {
+//        Customer customer = mapper.mapTo(request);
+//        customer = repository.save(customer);
+//        return mapper.mapToResponse(customer);
+        Device device = deviceMapper.mapTo(deviceRequest);
+//        device.setCreatedAt(new Date());
+        device = deviceRepository.save(device);
+        return deviceMapper.mapToResponse(device);
     }
 }
